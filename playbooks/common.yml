@@ -4,6 +4,12 @@
   sudo: yes
   tasks:
     -
+      name: generate-locales
+      command: locale-gen ru_RU.UTF-8
+    -
+      name: reconfigure-locales
+      command: dpkg-reconfigure locales
+    -
       name: apt-update
       apt: update_cache=true cache_valid_time=3600
       sudo: true
@@ -22,3 +28,7 @@
       name: update pd_hba.conf
       copy: src="files/pg_hba.conf" dest="/etc/postgresql/9.1/main/pg_hba.conf"
       sudo: true
+
+  handlers:
+    - name: restart postgresql
+      action: service name=postgresql state=reloaded enabled=yes
