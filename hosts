@@ -1,2 +1,2 @@
 [digitocean]
-162.243.194.158
+162.243.194.158 ansible_connection=ssh ansible_ssh_user=root
